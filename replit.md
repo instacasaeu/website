@@ -2,36 +2,39 @@
 
 ## Overview
 
-This is a full-stack web application for InstaCasa, a company specializing in prefabricated homes. The application is built with a React frontend and Express.js backend, designed to showcase home models, handle quote requests, and manage customer inquiries.
+This is a static website for InstaCasa, a company specializing in prefabricated homes across European markets. The website has been converted from a full-stack application to a static HTML site for easy deployment and maintenance.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Target Markets: Southern European coastal countries and Western EU
+Office Location: Berlin, Germany
+Email Contact: instacasaeu@gmail.com (no phone number)
 
-## System Architecture
+## Recent Changes (January 2025)
 
-### Frontend Architecture
-- **Framework**: React 18 with TypeScript
-- **Build Tool**: Vite for fast development and optimized builds
-- **UI Framework**: Shadcn/ui components built on Radix UI primitives
-- **Styling**: Tailwind CSS with custom CSS variables for theming
-- **State Management**: TanStack Query (React Query) for server state
-- **Form Handling**: React Hook Form with Zod validation
-- **Routing**: Wouter for lightweight client-side routing
+- **Converted to Static Site**: Removed React/Express architecture, created single index.html file
+- **Database Removed**: Eliminated PostgreSQL dependency, using email-based quote system
+- **Email Integration**: Quote forms generate mailto: links to instacasaeu@gmail.com
+- **Language Support**: Added infrastructure for 7 languages (EN, DE, ES, IT, FR, PT, EL)
+- **Quote Form Updates**: Added home size field, removed home model selection field
+- **GitHub Ready**: Prepared for easy GitHub Pages deployment
 
-### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **Language**: TypeScript with ES modules
-- **Database**: PostgreSQL with Drizzle ORM
-- **Database Provider**: Neon Database (@neondatabase/serverless)
-- **Schema Validation**: Zod for runtime type validation
-- **Development**: In-memory storage fallback for development
+## Current Architecture
 
-### Build & Deployment Strategy
-- **Development**: Vite dev server with Express API proxy
-- **Production**: Static frontend build served by Express
-- **Bundling**: esbuild for server-side code bundling
-- **Database Migrations**: Drizzle Kit for schema management
+### Static Website
+- **Technology**: Pure HTML, CSS, JavaScript
+- **Styling**: Tailwind CSS via CDN
+- **Email System**: mailto: links for quote submissions
+- **Multi-language**: Infrastructure ready for 7 European languages
+- **Deployment**: GitHub Pages compatible
+
+### Key Features
+- Mobile-responsive design
+- Quote request forms (modal and contact section)
+- Professional presentation for European markets
+- SEO optimized with proper meta tags
+- Contact information easily configurable
 
 ## Key Components
 

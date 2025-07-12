@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaCasa - Premium Prefabricated Homes | Fast Construction, Sustainable Living</title>
+    <meta name="description" content="Build your dream home in 15-30 days with InstaCasa prefabricated homes. Energy savings up to 60%, eco-friendly materials, and modern design. Get your free quote today.">
+    <meta property="og:title" content="InstaCasa - Premium Prefabricated Homes">
+    <meta property="og:description" content="Build your dream home in 15-30 days with energy-efficient prefabricated homes. Fast construction, sustainable living.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://instacasa.eu">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --secondary: #10B981;
+            --accent: #EF4444;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            z-index: 1;
+            top: 100%;
+            right: 0;
+        }
+        
+        .language-dropdown.active {
+            display: block;
+        }
+        
+        .language-dropdown a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .language-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold" style="color: var(--primary)">InstaCasa</h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="desktop-nav hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                    <a href="#features" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Features</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                    <a href="#construction" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Construction</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    
+                    <!-- Language Selector -->
+                    <div class="language-selector">
+                        <button onclick="toggleLanguageDropdown()" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+                            🌐 EN ▼
+                        </button>
+                        <div id="languageDropdown" class="language-dropdown">
+                            <a href="#" onclick="setLanguage('en')">🇬🇧 English</a>
+                            <a href="#" onclick="setLanguage('de')">🇩🇪 Deutsch</a>
+                            <a href="#" onclick="setLanguage('es')">🇪🇸 Español</a>
+                            <a href="#" onclick="setLanguage('it')">🇮🇹 Italiano</a>
+                            <a href="#" onclick="setLanguage('fr')">🇫🇷 Français</a>
+                            <a href="#" onclick="setLanguage('pt')">🇵🇹 Português</a>
+                            <a href="#" onclick="setLanguage('el')">🇬🇷 Ελληνικά</a>
+                        </div>
+                    </div>
+                    
+                    <button onclick="openQuoteModal()" class="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition-colors">
+                        Get Quote
+                    </button>
+                </div>
+                
+                <!-- Mobile Hamburger -->
+                <div class="hamburger md:hidden" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="mobile-menu md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
+                    <a href="#home" class="block px-3 py-2 text-gray-900 hover:text-blue-600">Home</a>
+                    <a href="#features" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Features</a>
+                    <a href="#about" class="block px-3 py-2 text-gray-600 hover:text-blue-600">About</a>
+                    <a href="#construction" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Construction</a>
+                    <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Contact</a>
+                    <button onclick="openQuoteModal()" class="w-full mt-4 bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600">
+                        Get Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+             style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2075&q=80')">
+        </div>
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
+                Build Your Dream Home in 
+                <span class="text-yellow-400">15-30 Days</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up">
+                Premium prefabricated homes with energy savings up to 60%. Modern, sustainable, and built to last.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up">
+                <button onclick="openQuoteModal()" class="bg-red-500 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-red-600 transform hover:scale-105 transition-all">
+                    📊 Get Free Quote
+                </button>
+                <button onclick="scrollToSection('features')" class="bg-white text-gray-900 px-8 py-4 rounded-md text-lg font-semibold hover:bg-gray-100 transition-colors">
+                    🏠 Learn More
+                </button>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="glass-effect rounded-lg p-6">
+                    <div class="text-3xl font-bold text-yellow-400 mb-2">15-30</div>
+                    <div class="text-sm uppercase tracking-wide">Days Construction</div>
+                </div>
+                <div class="glass-effect rounded-lg p-6">
+                    <div class="text-3xl font-bold text-yellow-400 mb-2">60%</div>
+                    <div class="text-sm uppercase tracking-wide">Energy Savings</div>
+                </div>
+                <div class="glass-effect rounded-lg p-6">
+                    <div class="text-3xl font-bold text-yellow-400 mb-2">100%</div>
+                    <div class="text-sm uppercase tracking-wide">Eco-Friendly</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Why Choose InstaCasa?
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Experience the future of home construction with our innovative prefabricated building solutions
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Fast Construction</h3>
+                    <p class="text-gray-600">Complete construction in just 15-30 days with our efficient prefabricated system</p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
+                        <span class="text-2xl">🌱</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Eco-Friendly</h3>
+                    <p class="text-gray-600">Built with sustainable materials and designed for minimal environmental impact</p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-200 transition-colors">
+                        <span class="text-2xl">💡</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Energy Efficient</h3>
+                    <p class="text-gray-600">Save up to 60% on heating costs with our advanced insulation technology</p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
+                        <span class="text-2xl">🛡️</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Durable & Safe</h3>
+                    <p class="text-gray-600">Earthquake resistant, fire resistant, and built to withstand extreme weather</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                        Your Partner for Prefabricated Buildings
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        InstaCasa specializes in the design, construction, and assembly of low-energy houses and buildings. 
+                        We build prefabricated single-storey houses, houses with attics, two-storey houses, commercial, 
+                        hospitality and tourist buildings.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Our advantages include fast construction, immediate habitability, modern materials and construction 
+                        technology, energy savings up to 60% compared to standard buildings, earthquake resistance, 
+                        fire resistance, and competitive pricing without compromising quality.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="text-green-600 text-xl">🏭</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">Factory Production</h3>
+                                <p class="text-gray-600 text-sm">All elements factory-made under controlled conditions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="text-blue-600 text-xl">👥</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">Expert Team</h3>
+                                <p class="text-gray-600 text-sm">Professional support throughout the project</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="text-yellow-600 text-xl">🏆</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">Quality Assured</h3>
+                                <p class="text-gray-600 text-sm">Constant supervision and monitoring</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="text-purple-600 text-xl">🎨</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">Customizable</h3>
+                                <p class="text-gray-600 text-sm">Built according to your ideas and preferences</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="scrollToSection('contact')" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors">
+                            Learn More About Us
+                        </button>
+                        <button onclick="openQuoteModal()" class="border border-blue-600 text-blue-600 px-6 py-3 rounded-md hover:bg-blue-600 hover:text-white transition-colors">
+                            Request Estimate
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+                         alt="Happy family in modern home interior"
+                         class="rounded-xl shadow-2xl w-full h-auto">
+                    <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-lg p-6 max-w-xs">
+                        <div class="text-2xl font-bold text-blue-600 mb-1">15+ Years</div>
+                        <div class="text-sm text-gray-600">Experience in prefabricated construction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Construction Section -->
+    <section id="construction" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    About Our Construction System
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Advanced wooden frame technology with superior insulation and load-bearing capabilities
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+                         alt="Sustainable building materials and construction process"
+                         class="rounded-xl shadow-lg w-full h-auto">
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                        Wall Element Production Process
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="text-blue-600 font-bold text-sm">1</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Wooden Frame Structure</h4>
+                                <p class="text-gray-600">Production begins with fabrication of load-bearing wooden frame structure using premium quality timber</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="text-blue-600 font-bold text-sm">2</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Advanced Insulation</h4>
+                                <p class="text-gray-600">Space between vertical elements filled with high-performance insulation based on selected construction system</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="text-blue-600 font-bold text-sm">3</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Load-Bearing Boards</h4>
+                                <p class="text-gray-600">Wooden frame covered on both sides with load-bearing gypsum fiber boards for structural integrity</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="text-blue-600 font-bold text-sm">4</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Quality Control</h4>
+                                <p class="text-gray-600">Constant supervision and monitoring by experts ensure highest quality standards</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-green-50 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-2">Key Benefits</h4>
+                        <ul class="text-gray-600 space-y-1">
+                            <li class="flex items-center">
+                                <span class="text-green-600 mr-2">✓</span>
+                                Superior thermal performance
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-600 mr-2">✓</span>
+                                Earthquake and fire resistant
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-600 mr-2">✓</span>
+                                Environmentally friendly materials
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-600 mr-2">✓</span>
+                                Long-lasting durability
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    What Our Customers Say
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Real experiences from satisfied InstaCasa homeowners
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-sm">
+                    <div class="text-4xl text-blue-600 mb-4">&ldquo;</div>
+                    <p class="text-gray-600 mb-6">The construction process was incredibly fast and efficient. Our dream home was completed in just 25 days, and the quality exceeded our expectations. The energy savings are remarkable!</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Maria & Carlos Rodriguez</div>
+                            <div class="text-sm text-gray-500">Madrid, Spain</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-sm">
+                    <div class="text-4xl text-blue-600 mb-4">&ldquo;</div>
+                    <p class="text-gray-600 mb-6">InstaCasa delivered exactly what they promised. The eco-friendly materials and modern design perfectly match our lifestyle. We love our new home!</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Johann & Lisa Schmidt</div>
+                            <div class="text-sm text-gray-500">Munich, Germany</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-sm">
+                    <div class="text-4xl text-blue-600 mb-4">&ldquo;</div>
+                    <p class="text-gray-600 mb-6">Professional service from start to finish. The team handled everything while we didn't need to be present. The final result is a beautiful, energy-efficient home.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Pierre & Sophie Dubois</div>
+                            <div class="text-sm text-gray-500">Lyon, France</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Get Your Free Quote Today
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Ready to start building your dream home? Contact us for a personalized quote and consultation
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-center">
+                            <div class="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-white text-xl">📧</span>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Email</div>
+                                <a href="mailto:instacasaeu@gmail.com" class="text-gray-300 hover:text-white transition-colors">
+                                    instacasaeu@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-white text-xl">📍</span>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Office</div>
+                                <div class="text-gray-300">Berlin, Germany</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-white text-xl">🕒</span>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Business Hours</div>
+                                <div class="text-gray-300">Mon - Fri: 8:00 - 18:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-6">
+                        <h4 class="font-semibold mb-2">Why Choose InstaCasa?</h4>
+                        <ul class="text-gray-300 space-y-2">
+                            <li class="flex items-center">
+                                <span class="text-green-400 mr-2">✓</span>
+                                15+ years of experience
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-400 mr-2">✓</span>
+                                Eco-friendly construction
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-400 mr-2">✓</span>
+                                Fast 15-30 day completion
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-400 mr-2">✓</span>
+                                60% energy savings
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-400 mr-2">✓</span>
+                                Professional project management
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-white rounded-xl p-8 text-gray-900">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Request Your Quote</h3>
+                        <form id="quoteForm" onsubmit="submitQuote(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                                    <input type="text" name="firstName" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                                    <input type="text" name="lastName" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                <input type="email" name="email" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                <input type="tel" name="phone" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Project Location</label>
+                                <input type="text" name="location" placeholder="City, Country" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Home Size (m²)</label>
+                                <input type="number" name="homeSize" placeholder="e.g. 120" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
+                                <textarea name="details" rows="4" placeholder="Tell us about your project requirements, timeline, and any specific needs..." class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition-colors">
+                                📝 Send Quote Request
+                            </button>
+                            
+                            <p class="text-sm text-gray-500 mt-4 text-center">
+                                * Required fields. We'll respond within 24 hours.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold text-blue-400 mb-4">InstaCasa</div>
+                    <p class="text-gray-300 mb-4">
+                        Building dreams, one prefabricated home at a time. Fast, sustainable, and affordable housing solutions.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">📘</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">📷</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">💼</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">📺</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Single Story Homes</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Two Story Homes</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Eco-Friendly Models</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Commercial Buildings</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Custom Designs</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Design Consultation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Construction</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Project Management</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">After-Sales Support</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Financing Options</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#construction" class="hover:text-white transition-colors">Construction System</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Quality Standards</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 InstaCasa. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quote Modal -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Get Your Free Quote</h2>
+                <button onclick="closeQuoteModal()" class="text-2xl font-bold text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+            
+            <form id="modalQuoteForm" onsubmit="submitQuote(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                        <input type="text" name="firstName" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                        <input type="text" name="lastName" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                    <input type="email" name="email" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                    <input type="tel" name="phone" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Project Location</label>
+                    <input type="text" name="location" placeholder="City, Country" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Home Size (m²)</label>
+                    <input type="number" name="homeSize" placeholder="e.g. 120" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
+                    <textarea name="details" rows="3" placeholder="Tell us about your project requirements, timeline, and any specific needs..." class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button type="submit" class="flex-1 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 transition-colors">
+                        📝 Send Quote Request
+                    </button>
+                    <button type="button" onclick="closeQuoteModal()" class="border border-gray-300 text-gray-700 px-6 py-3 rounded-md hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                </div>
+                
+                <p class="text-sm text-gray-500 mt-4 text-center">
+                    * Required fields. We'll respond within 24 hours.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Language dropdown toggle
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('languageDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Set language (placeholder for future implementation)
+        function setLanguage(lang) {
+            console.log('Language set to:', lang);
+            // Close dropdown
+            document.getElementById('languageDropdown').classList.remove('active');
+            // Here you would implement actual language switching logic
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Close mobile menu if open
+            document.getElementById('mobileMenu').classList.remove('active');
+        }
+
+        // Quote modal functions
+        function openQuoteModal() {
+            document.getElementById('quoteModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuoteModal() {
+            document.getElementById('quoteModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            // Reset form
+            document.getElementById('modalQuoteForm').reset();
+        }
+
+        // Submit quote form
+        function submitQuote(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Create email content
+            const emailSubject = `New Quote Request from ${data.firstName} ${data.lastName}`;
+            const emailBody = `
+New quote request received:
+
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+Phone: ${data.phone || 'Not provided'}
+Project Location: ${data.location || 'Not provided'}
+Home Size: ${data.homeSize ? data.homeSize + ' m²' : 'Not provided'}
+Project Details: ${data.details || 'Not provided'}
+
+Please respond to this customer within 24 hours.
+            `.trim();
+            
+            // Create mailto link
+            const mailtoLink = `mailto:instacasaeu@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Thank you! Your quote request is being prepared. Your email client should open with the request ready to send.');
+            
+            // Close modal and reset form
+            closeQuoteModal();
+            form.reset();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('quoteModal');
+            if (event.target === modal) {
+                closeQuoteModal();
+            }
+        }
+
+        // Close language dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageSelector = document.querySelector('.language-selector');
+            const dropdown = document.getElementById('languageDropdown');
+            
+            if (!languageSelector.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
