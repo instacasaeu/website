@@ -29,8 +29,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       lastName: "",
       email: "",
       phone: "",
-      homeModel: "",
       location: "",
+      homeSize: "",
       details: ""
     },
   });
@@ -147,39 +147,26 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               
               <FormField
                 control={form.control}
-                name="homeModel"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Home Model Interest</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a model" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="casa-modern-single">Casa Modern Single</SelectItem>
-                        <SelectItem value="casa-family-plus">Casa Family Plus</SelectItem>
-                        <SelectItem value="casa-compact">Casa Compact</SelectItem>
-                        <SelectItem value="casa-executive">Casa Executive</SelectItem>
-                        <SelectItem value="casa-eco">Casa Eco</SelectItem>
-                        <SelectItem value="casa-holiday">Casa Holiday</SelectItem>
-                        <SelectItem value="custom">Custom Design</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
                 name="location"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Project Location</FormLabel>
                     <FormControl>
                       <Input placeholder="City, Country" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="homeSize"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Home Size (m²)</FormLabel>
+                    <FormControl>
+                      <Input type="number" placeholder="e.g. 120" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

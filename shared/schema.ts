@@ -23,6 +23,7 @@ export const quoteRequests = pgTable("quote_requests", {
   phone: text("phone"),
   homeModel: text("home_model"),
   location: text("location"),
+  homeSize: text("home_size"), // in square meters
   details: text("details"),
   status: text("status").notNull().default("pending"), // pending, contacted, quoted
   createdAt: timestamp("created_at").defaultNow().notNull(),

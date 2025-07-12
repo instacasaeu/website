@@ -45,78 +45,8 @@ export class MemStorage implements IStorage {
   }
 
   private initializeHomeModels() {
-    const sampleModels: InsertHomeModel[] = [
-      {
-        name: "Casa Modern Single",
-        description: "Contemporary single-story design perfect for modern families",
-        area: 120,
-        bedrooms: 3,
-        bathrooms: 2,
-        imageUrl: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-        category: "single-story",
-        features: ["Open floor plan", "Large windows", "Modern kitchen", "Energy efficient"],
-        basePrice: 180000
-      },
-      {
-        name: "Casa Family Plus",
-        description: "Spacious two-story home designed for growing families",
-        area: 180,
-        bedrooms: 4,
-        bathrooms: 3,
-        imageUrl: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-        category: "two-story",
-        features: ["Two-story design", "Master suite", "Family room", "Double garage"],
-        basePrice: 250000
-      },
-      {
-        name: "Casa Compact",
-        description: "Efficient starter home perfect for young couples",
-        area: 80,
-        bedrooms: 2,
-        bathrooms: 1,
-        imageUrl: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-        category: "compact",
-        features: ["Compact design", "Efficient layout", "Modern finishes", "Low maintenance"],
-        basePrice: 120000
-      },
-      {
-        name: "Casa Executive",
-        description: "Luxury home with premium finishes and spacious layout",
-        area: 250,
-        bedrooms: 5,
-        bathrooms: 4,
-        imageUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-        category: "luxury",
-        features: ["Premium materials", "Spacious rooms", "Luxury finishes", "Executive office"],
-        basePrice: 350000
-      },
-      {
-        name: "Casa Eco",
-        description: "Sustainable home with solar panels and green technology",
-        area: 140,
-        bedrooms: 3,
-        bathrooms: 2,
-        imageUrl: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-        category: "eco",
-        features: ["Solar panels", "Green technology", "Energy efficient", "Sustainable materials"],
-        basePrice: 220000
-      },
-      {
-        name: "Casa Holiday",
-        description: "Perfect vacation home with scenic views and relaxation focus",
-        area: 100,
-        bedrooms: 2,
-        bathrooms: 2,
-        imageUrl: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-        category: "holiday",
-        features: ["Scenic design", "Relaxation focus", "Large deck", "Vacation perfect"],
-        basePrice: 160000
-      }
-    ];
-
-    sampleModels.forEach(model => {
-      this.createHomeModel(model);
-    });
+    // Initialize with empty models - real models will be added through admin interface
+    // For now, just initialize the Map structure
   }
 
   async getAllHomeModels(): Promise<HomeModel[]> {
