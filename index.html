@@ -823,40 +823,50 @@
         }
 
         // Submit quote form
-        function submitQuote(event) {
+        async function submitQuote(event) {
             event.preventDefault();
             
             const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
             
-            // Create email content
-            const emailSubject = `New Quote Request from ${data.firstName} ${data.lastName}`;
-            const emailBody = `
-New quote request received:
-
-Name: ${data.firstName} ${data.lastName}
-Email: ${data.email}
-Phone: ${data.phone || 'Not provided'}
-Project Location: ${data.location || 'Not provided'}
-Home Size: ${data.homeSize ? data.homeSize + ' m²' : 'Not provided'}
-Project Details: ${data.details || 'Not provided'}
-
-Please respond to this customer within 24 hours.
-            `.trim();
+            // Show loading state
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = '⏳ Sending...';
+            submitButton.disabled = true;
             
-            // Create mailto link
-            const mailtoLink = `mailto:instacasaeu@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Thank you! Your quote request is being prepared. Your email client should open with the request ready to send.');
-            
-            // Close modal and reset form
-            closeQuoteModal();
-            form.reset();
+            try {
+                const response = await fetch('/api/send-quote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Show success message
+                    alert('🎉 Thank you! Your quote request has been sent successfully. We will respond within 24 hours.');
+                    
+                    // Close modal and reset form
+                    closeQuoteModal();
+                    form.reset();
+                } else {
+                    // Show error message
+                    const errorMessage = result.message || 'Failed to send quote request';
+                    alert(`❌ Error: ${errorMessage}. Please try again or contact us directly at instacasaeu@gmail.com`);
+                }
+            } catch (error) {
+                console.error('Error submitting quote:', error);
+                alert('❌ Network error. Please check your internet connection and try again, or contact us directly at instacasaeu@gmail.com');
+            } finally {
+                // Restore button state
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            }
         }
 
         // Close modal when clicking outside
